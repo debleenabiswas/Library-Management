@@ -1,0 +1,68 @@
+'''
+mini project
+LIBRARY MANAGEMENT
+create a library class
+methods - display book
+          lend book - (who owns the book if not present)
+          add book
+          return book
+leenaLibrary = Library(listofbooks, library_name)
+dictionary (books - name of person who lend the book)
+'''
+
+class Library:
+    def __init__(self, book):
+        self.bookname = book
+
+
+    def displayBook(self):
+        print(f"The books are {self.bookname}")
+
+
+    def lendBook(self):
+        print("Enter the name of the book u want to lend")
+        book_name = input()
+        if book_name in self.bookname:
+            print("The book is available. You can lend the book")
+            print("please enter your name")
+            lender_name = input()
+            lender_list.update({book_name : lender_name})
+            self.bookname.remove(book_name)
+            print("************  Thank you. Keep visiting  *************\n")
+        else:
+            if book_name in lender_list:
+                print("Sorry!! The book is not available.")
+                print("Currently, the book is issued by ", end="")
+                print(lender_list[book_name])
+                print("\n")
+            else:
+                print("Sorry!! The book is not available in our library\n")
+
+
+    def addBook(self):
+        print("Enter the name of the book u want to donate")
+        newBook = input()
+        self.bookname.append(newBook)
+        print("************  Thank you. Keep visiting  *************\n")
+
+    def returnBook(self):
+        print("Enter the name of the book you want to return")
+        return_book = input()
+        self.bookname.append(return_book)
+        print("************  Thank you. Keep visiting  *************\n")
+
+lender_list = {}
+
+leenaLibrary = Library(["data structure using c", "python programming", "pointers in c", "DBMS", "DAA", "Computer Network"])
+while(1):
+    print("Do you want to (see the name of the books/lend book/ add book)")
+    print("Enter 1 if you just want to see, 2 if you want to lend, 3 if you want to add and 4 if you want to return")
+    a = int(input())
+    if a == 1:
+        leenaLibrary.displayBook()
+    elif a == 2:
+        leenaLibrary.lendBook()
+    elif a == 3:
+        leenaLibrary.addBook()
+    else:
+        leenaLibrary.returnBook()
